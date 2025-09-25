@@ -1,4 +1,5 @@
-import React, { Component } from "React";t, { useEffect, useState } from 'React'
+// eslint-disable-next-line no-unused-vars
+import react, { useEffect, useState } from 'react'
 import BookCards from '../components/BookCards';
 
 const BestSellerBooks = () => {
