@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { apiUrl } from "../lib/api";
 // form flowbite react site
 import { Card } from 'flowbite-react';
 
@@ -6,7 +7,7 @@ const Shop = () => {
   const [books, setBooks] = useState([]);
 
   useEffect( () => {
-    fetch("http://localhost:5000/all-books").then(res => res.json()).then(data => setBooks(data));
+    fetch(apiUrl("/all-books")).then(res => res.json()).then(data => setBooks(data));
   },[])
 
   return (

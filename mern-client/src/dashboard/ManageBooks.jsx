@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "flowbite-react";
 import { Link } from "react-router-dom";
+import { apiUrl } from "../lib/api";
 
 const ManageBooks = () => {
   const [allBooks, setAllBooks] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/all-books")
+    fetch(apiUrl("/all-books"))
       .then((res) => res.json())
       .then((data) => setAllBooks(data));
   }, []);
@@ -14,7 +15,7 @@ const ManageBooks = () => {
 
   const handleDelete = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/book/${id}`, {
+    fetch(apiUrl(`/book/${id}`), {
       method: "DELETE",
     })
       .then((res) => res.json())
