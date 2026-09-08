@@ -1,0 +1,171 @@
+/* Variable-width, near-monochrome portfolio — typography anchor + UI chrome. */
+
+@import './styles/fonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ink: #0a0a0a;
+    --paper: #f2f2f0;
+    --accent: #4f7cff;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-ink text-paper font-sans;
+    overscroll-behavior-y: none;
+  }
+
+  /* Lenis */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #0a0a0a;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* Thin, quiet scrollbar for the case-study drawer */
+  .quiet-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .quiet-scroll::-webkit-scrollbar-thumb {
+    background: rgba(242, 242, 240, 0.18);
+    border-radius: 999px;
+  }
+}
+
+@layer utilities {
+  /* Big display type: variable-width look via optical size + tight tracking */
+  .display {
+    font-family: 'Neue Montreal', 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 0.94;
+    font-variation-settings: 'opsz' 128;
+  }
+
+  /* Outlined "ghost" words inside the display headings */
+  .text-stroke {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(242, 242, 240, 0.55);
+  }
+  .text-stroke-accent {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent);
+  }
+
+  /* Eyebrow label used at the top of each section */
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.28em] text-dim;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Film grain overlay                                                 */
+/* ------------------------------------------------------------------ */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: -200%;
+  width: 400%;
+  height: 400%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  z-index: 80;
+  animation: grain 9s steps(6) infinite;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-6%, 4%); }
+  40% { transform: translate(4%, -7%); }
+  60% { transform: translate(-5%, -3%); }
+  80% { transform: translate(6%, 5%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Scroll-down cue                                                    */
+/* ------------------------------------------------------------------ */
+.scroll-cue-line {
+  display: block;
+  width: 1px;
+  height: 56px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  transform-origin: top;
+}
+@keyframes cue {
+  0% { transform: scaleY(0); transform-origin: top; }
+  45% { transform: scaleY(1); transform-origin: top; }
+  55% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue-line {
+    animation: none;
+    transform: scaleY(1);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Marquee (skills strip)                                             */
+/* ------------------------------------------------------------------ */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 4rem;
+  animation: marquee 34s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Preloader                                                          */
+/* ------------------------------------------------------------------ */
+@keyframes preloader-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+.preloader-dot {
+  animation: preloader-pulse 1.4s ease-in-out infinite;
+}

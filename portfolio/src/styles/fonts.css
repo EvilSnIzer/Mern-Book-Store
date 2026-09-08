@@ -1,0 +1,38 @@
+/* ------------------------------------------------------------------
+   Typography
+   ------------------------------------------------------------------
+   Goal: self-hosted "Neue Montreal" (variable width, near-monochrome).
+   The real .woff2 files are NOT committed (licensing + repo size) —
+   drop them into `src/assets/fonts/` and follow the instructions in
+   the README ("Swapping in your own font").
+
+   Until then we load the closest freely-available stand-in, Inter,
+   via the Google Fonts <link> in index.html — it carries the same
+   tight, optical-size driven look. Uncomment the @font-face blocks
+   below (and delete the Google <link>) to go fully self-hosted.
+------------------------------------------------------------------- */
+
+/* --- Self-hosted Neue Montreal (placeholders — see README) ------- */
+/*
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('../assets/fonts/NeueMontreal-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('../assets/fonts/NeueMontreal-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('../assets/fonts/NeueMontreal-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+*/

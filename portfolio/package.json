@@ -1,0 +1,33 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AI/ML engineer portfolio — scroll-driven 3D single page",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "gen:covers": "node scripts/gen-covers.mjs"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.114.3",
+    "@react-three/fiber": "^8.17.10",
+    "framer-motion": "^11.11.7",
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.14",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.169.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.2",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^7.0.2",
+    "vite": "^5.4.8"
+  }
+}
